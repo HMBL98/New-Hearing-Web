@@ -1,0 +1,30 @@
+<div class="cuerpo">
+  <div id="login">
+    <% if devise_error_messages! != "" %>
+      <%= devise_error_messages! %>
+    <% else %>
+      <h1>Log in</h1>
+    <% end %>
+    
+    <%= form_for(resource, as: resource_name,:html => { :onsubmit => 'return validadoL()' }, url: session_path(resource_name)) do |f| %>
+        <%= f.email_field :email,:placeholder => "e-mail",:oninput => "return emailValidado();", autofocus: true %>
+        <span class="icon-user"> </span><span id="seis" class="icon-cross"> </span>
+        <%= f.password_field :password,:placeholder => "password",:oninput => "return validaContrasena();", autocomplete: "on" %>
+        <span class="icon-key"> </span><span id="cuatro" class="icon-cross"> </span>
+        <div class="forgotP">
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Forgot?", new_password_path(resource_name) %><br />
+        <% end -%>
+      </div>
+        <%= f.submit "Log in" %>
+      <%= devise_error_messages! %>
+      <%= render "users/shared/links" %>
+    <% end %>
+  </div>
+  <div id="texto">
+    <h1>Bienvenido a Virtual Vision</h1>
+      <p>Vision es una empresa comprometida con el Mundo, nosotros queremos ser tu mundo. Nosotros queremos ser quien conecte a las personas con el mundo... hacerte entender y percibir el mundo que te rodea.</p>
+      <p>En Vision nos preocupa el hecho de que elas personas sordas no gocen de una vida normal. Para esto hemos creado los New Hering, los cuales le dotarán al usuario con la capacidad de poder comprender lo que pasa a su alrededor.</p>
+      <p>Complementamos esta los New Hearing con esta aplicación web, en la cual podrás crear una cuenta, para que tus familiares conozcan tu ubicación y puedan cuidar de ti.</p>
+  </div>
+</div>

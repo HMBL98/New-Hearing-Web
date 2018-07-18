@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VirtualVision</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+  <%= stylesheet_link_tag    "Welcome/application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "Welcome/application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header class="cabecera">
+    <div class="menu">
+      <a href="#" class="bt-menu"><span class="icon-menu"></span></span></a>
+    </div>
+    <nav class="navegacion overbox">
+      <ul>
+        <li class="VV" style="display:none;">Virtual Vision</li>
+        <li><%= link_to(content_tag(:span, " ",class: "icon-home2") + "Home", welcome_index_path) %></li>
+        <li><%= link_to(content_tag(:span, " ",class: "icon-profile") + "About Us", welcome_about_us_path) %></li>
+        <li><%= link_to(content_tag(:span, " ",class: "icon-cart") + "Downloads", welcome_downloads_path) %></li>        
+        <li><%= link_to(content_tag(:span, " ",class: "icon-cart") + "Sign In", user_session_path) %></li>   
+      </ul>
+    </nav>
+    <div id="logo">
+    <%= image_tag "Vision.png",size: "50x50", :alt => "Vision +", :title => "Vision"%>
+    </div>
+    <div class="derecha">
+      <div class="buscador">
+        <form role="search" method="get" class="searchform">
+            <label for="s">
+             <span class="icon-search"></span>
+          </label>
+          <input type="text" value="" placeholder="Buscar en Vision" class="" id="s" />
+        </form>
+      </div>
+    </div> 
+  <div class="main fadebox">
+  </header>
+  </div>
+  <section class="seccion2">
+  <%= yield %>
+  </section>
+</body>
+</html>

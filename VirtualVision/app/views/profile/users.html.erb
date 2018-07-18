@@ -1,0 +1,40 @@
+<div class="SearchUser">
+<h1>Administración de Usuarios </h1>
+<%= form_tag({:controller => "profile", :action => "users"}, :method => :get) do %>
+    <%= text_field_tag "q", params[:q],:placeholder => "Buscar por nombre" %>
+    <span class="icon-search"></span>
+<% end %>
+<table class="usuarios">
+  <% if @users.count == 0 %>
+   <h1>Not found</h1>
+  <% else %>
+    <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Usuario</th>
+    <th>Correo</th>
+    <th>Registro</th>
+    <th>Privilegio</th>
+    </tr>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.lastname %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= user.last_sign_in_at %></td>
+          <% if user.role == "usuario" %>
+            <%= form_for :profile, :url => {:action => :update,:id => user.id}, :method => :put do |f| %>
+              <td><%= f.submit :class => "role",:value => "Subir Role" %></td>
+            <% end %>
+          <% else %>
+                <td><%= submit_tag( value = "#{user.role}")%></td>
+          <% end %>
+          
+        </tr>
+    <% end %>
+  <% end %>
+</table>
+</div>

@@ -1,0 +1,22 @@
+<div class="cuerpoR">
+  <div id="loginR">
+  <% if devise_error_messages! != "" %>
+    <%= devise_error_messages! %>
+  <% else %>
+    <h1>Forgot your password?</h1>
+  <% end %>
+  
+  
+	<%= form_for(resource, as: resource_name,:html => { :onsubmit => 'return validadoP()' }, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+  <div class="field">
+    <%= f.email_field :email,placeholder: "e-mail",:oninput => "return emailValidado();", autofocus: true %>
+    <span class="icon-user"> </span><span id="seis" class="icon-cross"> </span>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send me reset password instructions" %>
+  </div>
+<% end %>
+  </div>
+</div>

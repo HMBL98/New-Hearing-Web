@@ -1,0 +1,16 @@
+<div class = "agrupar">
+  <div id="login">
+    <h1>Add a Message</h1>
+
+   
+   <%= form_for([@users, @users.messages.build]) do |f| %>
+      <p>
+        
+        <%= f.text_field :message %>
+      </p>
+     <p>
+       <%= f.submit %>
+      </p>
+    <% end %>
+  </div>
+</div>

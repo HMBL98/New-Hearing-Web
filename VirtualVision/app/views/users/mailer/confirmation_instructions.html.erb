@@ -1,0 +1,5 @@
+<p>Bienvenido a Virtual Vision <%= @email %>!</p>
+
+<p>Por favor sigue el siguiente link para unirte a Virtual Vision</p>
+
+<p><%= link_to 'Confirmar cuenta', confirmation_url(@resource, confirmation_token: @token) %></p>

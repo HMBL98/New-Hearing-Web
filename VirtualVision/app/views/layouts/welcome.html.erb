@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VirtualVision</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+  <%= stylesheet_link_tag    "Welcome/application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "Welcome/application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header class="cabecera">
+    <div class="menu">
+      <a href="#" class="bt-menu"><span class="icon-menu"></span></span></a>
+    </div>
+    <nav class="navegacion overbox">
+      <ul>
+        <%= image_tag "Vision.png",size: "50x50", :alt => "Vision +", :title => "Vision",:style => "display: none;",:class => "VV"%>
+        <li><%= link_to(content_tag(:span, " ",class: "icon-home2") + "Home", welcome_index_path) %></li>
+        <li><%= link_to(content_tag(:span, " ",class: "icon-profile") + "About Us", welcome_about_us_path) %></li>
+        <li><%= link_to(content_tag(:span, " ",class: "icon-user-check") + "Sign In", user_session_path) %></li> 
+        <li><%= link_to(content_tag(:span, " ",class: "icon-user-plus") + "Sign Up", new_user_registration_path) %></li>   
+      </ul>
+    </nav>
+    <div id="logo">
+    <%= image_tag "Vision.png",size: "50x50", :alt => "Vision +", :title => "Vision"%>
+    </div>
+    <div class="derecha">
+      <div class="buscador">
+        <form role="search" method="get" class="searchform">
+            <label for="s">
+             <span class="icon-search"></span>
+          </label>
+          <input type="text" value="" placeholder="Buscar en Vision" class="" id="s" />
+        </form>
+      </div>
+    </div> 
+  <div class="main fadebox">
+  </header>
+  </div>
+  <section class="seccion">
+  <%= yield %>
+  </section>
+  <footer class="pie">
+      <nav class="social">
+          <ul>
+            <li><a href="#"><span class="icon-google-plus"></span> </a></li>
+            <li><a href="#"><span class="icon-facebook"></span></a></li>
+            <li><a href="#"><span class="icon-twitter"></span> </a></li>
+            <li><a href="#"><span class="icon-youtube"></span> </a></li>
+            <li><a href="#"><span class="icon-instagram"></span></a></li>
+          </ul>
+      </nav>
+      <div class="textoF">
+        <p>Imágenes satelitales: © 2014 Astrium, DigitalGlobe</p>
+        <p>Es posible que algunas características y algunos dispositivos no estén disponibles en todas las áreas.</p>
+      </div>
+      <div class="VVtexto">
+        <div class="VirtualVisionT">
+          <h1>Virtual Vision</h1>
+        </div>
+        <div class="copy">
+          <p>Powered Virtual Vision Â® Version 1.0.0.0.0 - Copyright 2015 - 2100.</p>
+        </div>  
+      </div>
+</footer>
+</body>
+</html>

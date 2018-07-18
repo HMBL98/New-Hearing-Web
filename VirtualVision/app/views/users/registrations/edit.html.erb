@@ -1,0 +1,50 @@
+<div class="agrupar">
+  <div id="login">
+    <% if devise_error_messages! != "" %>
+      <%= devise_error_messages! %>
+    <% else %>
+      <h1>Edit</h1>
+    <% end %>
+   
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put ,:onsubmit => 'return validado()'}) do |f| %>
+    
+    
+        <%= f.text_field :name,:placeholder => "Nombre",:oninput => "return validaNombre()", autofocus: true %>
+    
+
+    <%= f.text_field :lastname,:placeholder => "Apellido",:oninput => "return validaApellido()", autofocus: true %>
+    
+    <%= f.text_field :username,:placeholder => "Usuario",:oninput => "return validaUsuario()", autofocus: true %>
+    
+
+   <%= f.email_field :email,:placeholder => "e-mail",:oninput => "return emailValidado()", autofocus: true %>
+    
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <%= f.password_field :password,:placeholder => "password",:oninput => "return validaContrasena();", autocomplete: "off" %>
+     
+
+    <%= f.password_field :password_confirmation,:placeholder => "Confirmar Contraseña",:oninput => "return validaConfirmarContrasena()", autocomplete: "off" %>
+
+
+    
+    <%= f.password_field :current_password,:placeholder => "Current Password",:oninput => "return validaCurrentContrasena();", autocomplete: "off" %>
+    
+
+    <div><%= f.submit "Update" %></div>
+    <% end %>
+    
+  </div>
+</div>
+<div class="cancel_account">
+    
+    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure :'(?" }, method: :delete ,:id => "cncbtn"%>
+</div>
+     
+
+    
+
+   

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+  <%= stylesheet_link_tag    "Profile/application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "Profile/application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+</head>
+<body>
+ <div class="container">
+      <ul id="gn-menu" class="gn-menu-main">
+        <li class="gn-trigger">
+          <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+          <nav class="gn-menu-wrapper">
+            <div class="gn-scroller">
+              <ul class="gn-menu">
+                <% if can? :destroy, @users %>
+                  <li class="gn-search-item">
+                  <a class="gn-icon gn-icon-search"><span>Search</span></a>
+                  <%= form_tag({:controller => "profile", :action => "users"}, :method => :get) do %>
+                    <%= text_field_tag "q", params[:q],:placeholder => "Buscar Usuarios",:class => "gn-search" %>
+                  <% end %>
+                </li>
+                <% else %>
+                 <li class="gn-search-item">
+                  <input placeholder="Estamos trabajando" type="search" class="gn-search">
+                  <a class="gn-icon gn-icon-search"><span>Search</span></a>
+                </li>
+                  
+                </li>
+                <% end %>
+                
+                <li><%= link_to(content_tag(:span, " ",class: "gn-icon icon-home2") + "Home", profile_myaccount_path) %></li>
+                <li><%= link_to(content_tag(:span, " ",class: "gn-icon  icon-cog") + "Messages", profile_messages_path) %></li>
+                <% if can? :destroy, @users %>
+                  <li>
+                  <a class="gn-icon gn-icon-download">Administrar</a>
+                  <ul class="gn-submenu">
+                    <li><%= link_to(content_tag(:span, " ",class: "gn-icon  icon-users") + "Users", profile_users_path ) %></li>
+                  </ul>
+                </li>
+                <% else %>
+                <% end %>
+                <!--<li>
+                  <a class="gn-icon gn-icon-download">Downloads</a>
+                  <ul class="gn-submenu">
+                    <li><a class="gn-icon gn-icon-illustrator">Vector Illustrations</a></li>
+                    <li><a class="gn-icon gn-icon-photoshop">Photoshop files</a></li>
+                  </ul>
+                </li>-->
+                <!--<li><a class="gn-icon gn-icon-cog">Settings</a></li>-->
+                <li><%= link_to(content_tag(:span, " ",class: "gn-icon  icon-cog") + "Settings", edit_user_registration_path ) %></li>
+    
+                <!--<li>
+                  <a class="gn-icon gn-icon-archive">Archives</a>
+                  <ul class="gn-submenu">
+                    <li><a class="gn-icon gn-icon-article">Articles</a></li>
+                    <li><a class="gn-icon gn-icon-pictures">Images</a></li>
+                    <li><a class="gn-icon gn-icon-videos">Videos</a></li>                    
+                  </ul>
+                </li>-->
+              </ul>
+            </div>
+          </nav>
+        </li>
+        <div id="logo">
+          <%= image_tag "Vision.png",size: "50x50", :alt => "Vision +", :title => "Vision"%>
+        </div>
+        <li class="log_out"><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+      </ul>
+      <% if notice %>
+        <div class="alert">
+          <p class="alert-success">
+           <%= notice %>
+          </p>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="alert">
+          <p class="alert-danger">
+           <%= alert %>
+          </p>
+        </div>
+      <% end %>
+    </div><!-- /container -->
+  <section class="seccion">
+  <%= yield %>
+  </section>
+  <footer class="pie">
+  </footer>
+  <script>
+    new gnMenu( document.getElementById( 'gn-menu' ) );
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<div class="cuerpoR">
+  <div id="loginR">
+    <h1>Change your password</h1>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put ,:onsubmit => 'return validadoEP()' }) do |f| %>
+      <%= devise_error_messages! %>
+      <%= f.hidden_field :reset_password_token %>
+      
+      <%= f.password_field :password,:placeholder => "new password",:oninput => "return validaContrasena();", autocomplete: "off" %>
+     <span class="icon-key"> </span><span id="cuatro" class="icon-cross"> </span>
+
+    <%= f.password_field :password_confirmation,:placeholder => "Confirmar Contraseña",:oninput => "return validaConfirmarContrasena()", autocomplete: "off" %>
+    <span class="icon-key"> </span><span id="cinco" class="icon-cross"> </span>
+
+    <%= f.submit "Change my password" %>
+    <% end %>
+  </div>
+</div>

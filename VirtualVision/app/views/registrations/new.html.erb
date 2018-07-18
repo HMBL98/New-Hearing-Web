@@ -1,0 +1,32 @@
+<div class="cuerpoR">
+  <div id="loginR">
+    <% if devise_error_messages! != "" %>
+      <%= devise_error_messages! %>
+    <% else %>
+      <h1>Sign up</h1>
+    <% end %>
+      
+    <%= form_for(resource, as: resource_name,:html => { :onsubmit => 'return validado()' }, url: registration_path(resource_name)) do |f| %>
+        <span class="icon-user"> </span> 
+        <span id="uno" class="icon-cross"> </span>
+        <%= f.text_field :name,:placeholder => "Nombre",:oninput => "return validaNombre()", autofocus: true %>
+        <%= f.text_field :lastname,:placeholder => "Apellido",:oninput => "return validaApellido()", autofocus: true %>
+        <span class="icon-user"> </span><span id="dos" class="icon-cross"> </span>
+        <%= f.text_field :username,:placeholder => "Usuario",:oninput => "return validaUsuario()", autofocus: true %>
+        <span class="icon-smile"> </span><span id="tres" class="icon-cross"> </span>
+        <%= f.email_field :email,:placeholder => "e-mail",:oninput => "return emailValidado()", autofocus: true %>
+        <span class="icon-mail4"> </span><span id="seis" class="icon-cross"> </span>
+        
+        <% if @user.password_required? %>
+           <%= f.password_field :password,:placeholder => "Contraseña",:oninput => "return validaContrasena()", autocomplete: "off" %>
+           <span class="icon-key"> </span><span id="cuatro" class="icon-cross"> </span>
+
+        <%= f.password_field :password_confirmation,:placeholder => "Confirmar Contraseña",:oninput => "return validaConfirmarContrasena()", autocomplete: "off" %>
+        <span class="icon-key"> </span><span id="cinco" class="icon-cross"> </span>
+     <% end %>
+        <%= f.submit "Sign up"%>
+        <%= render "users/shared/links" %>
+    <% end %>
+    
+  </div>
+</div>
